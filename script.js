@@ -32,9 +32,6 @@ moviesApp.controller('SearchController', ['$scope','$http', function($scope, $ht
       }
     }
 
-
-    // window.localStroage.searchTerms = JSON.stringify($scope.searchTerms);
-
     $http(req).success(function(data) {
 
       if ($scope.searchTerms.indexOf($scope.searchTerm) == -1) {
@@ -50,16 +47,9 @@ moviesApp.controller('SearchController', ['$scope','$http', function($scope, $ht
 
   }
 
-  // $scope.$watch("searchTerm", function(newVal, oldVal){
-  //   console.log(oldVal,newVal);
-
-  //   if (newVal) {
-  //     window.localStorage.searchTerm = $scope.searchTerm;
-  //   }
-  // })
 
   if ($scope.searchTerm) {
-    // $scope.search();
+    $scope.search();
   }
 
-}])
+}]);
