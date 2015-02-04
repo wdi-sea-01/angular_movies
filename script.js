@@ -16,12 +16,13 @@ moviesApp.controller('SearchController', ['$scope','$http', function($scope, $ht
   }
 
   $scope.search = function() {
-    $scope.loading = true;
 
-    if ($scope.searchTerm.length < 1) {
+    if ($scope.searchTerm.length < 2) {
       $scope.movies.Error = "Must provide more than one character.";
       return;
-    };
+    }
+
+    $scope.loading = true;
 
     var req = {
       url: "http://www.omdbapi.com",

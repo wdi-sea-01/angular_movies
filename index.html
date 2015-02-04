@@ -15,7 +15,7 @@
     <form class="form" ng-submit="search()" >
       <div class="form-group" ng-class="{'has-error': movies.Error}">
         <label class="control-label">{{movies.Error}}</label>
-        <input type="text" class="form-control" ng-model="searchTerm" ng-change="search1()" ng-model-options="{debounce: 300}" typeahead="term for term in searchTerms | filter:$viewValue | limitTo:8">
+        <input type="text" class="form-control" ng-model="searchTerm" typeahead="term for term in searchTerms | filter:$viewValue | limitTo:8">
       </div>
 
       <div class="btn-group">
@@ -27,8 +27,7 @@
       <input type="submit" class="btn btn-primary" value="Search">
 
     </form>
-    <pre>{{searchTerms}}</pre>
-    <div class="row text-center" ng-show="loading"><img src="http://www.menhardt.com/assets/spinner-04e265d4db5cbb5d445ae70afb07c750.gif"></div>
+      <div class="row text-center" ng-show="loading"><img src="http://www.menhardt.com/assets/spinner-04e265d4db5cbb5d445ae70afb07c750.gif"></div>
 
     <table class="table table-hover" ng-show="movies.Search && !loading">
 
