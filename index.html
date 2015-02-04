@@ -1,0 +1,54 @@
+<html>
+<head>
+  <title>Movies App</title>
+  <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.11/angular.min.js"></script>
+  <script type="text/javascript" src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.0.min.js"></script>
+  <script type="text/javascript" src="script.js"></script>
+
+</head>
+<body ng-app="MoviesApp">
+  <div class="container" ng-controller="SearchController">
+    <h1>Angular Movie App<small>  {{searchTerm}}</small></h1>
+
+
+    <form class="form" ng-submit="search()" >
+      <div class="form-group" ng-class="{'has-error': movies.Error}">
+        <label class="control-label">{{movies.Error}}</label>
+        <input type="text" class="form-control" ng-model="searchTerm" ng-change="search1()" ng-model-options="{debounce: 300}" typeahead="term for term in searchTerms | filter:$viewValue | limitTo:8">
+      </div>
+
+      <div class="btn-group">
+          <label class="btn btn-success" ng-change="search()" ng-model="searchType" btn-radio="'movie'" uncheckable>Movie</label>
+          <label class="btn btn-success" ng-change="search()" ng-model="searchType" btn-radio="'series'" uncheckable>Series</label>
+          <label class="btn btn-success" ng-change="search()" ng-model="searchType" btn-radio="'episode'" uncheckable>Episode</label>
+      </div>
+
+      <input type="submit" class="btn btn-primary" value="Search">
+
+    </form>
+    <pre>{{searchTerms}}</pre>
+    <div class="row text-center" ng-show="loading"><img src="http://www.menhardt.com/assets/spinner-04e265d4db5cbb5d445ae70afb07c750.gif"></div>
+
+    <table class="table table-hover" ng-show="movies.Search && !loading">
+
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Year</th>
+          <th>Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="taco in movies.Search">
+          <td>{{taco.Title}}</td>
+          <td>{{taco.Year}}</td>
+          <td><span class="label label-default">{{taco.Type | uppercase }}</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+
+  </div>
+</body>
+</html>
